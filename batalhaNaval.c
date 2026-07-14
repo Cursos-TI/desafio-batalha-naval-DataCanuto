@@ -1,40 +1,89 @@
 #include <stdio.h>
 
-// Desafio Batalha Naval - MateCheck
-// Este código inicial serve como base para o desenvolvimento do sistema de Batalha Naval.
-// Siga os comentários para implementar cada parte do desafio.
+int main(){
+    printf("\n===Batalha Naval===\n");
 
-int main() {
-    // Nível Novato - Posicionamento dos Navios
-    // Sugestão: Declare uma matriz bidimensional para representar o tabuleiro (Ex: int tabuleiro[5][5];).
-    // Sugestão: Posicione dois navios no tabuleiro, um verticalmente e outro horizontalmente.
-    // Sugestão: Utilize `printf` para exibir as coordenadas de cada parte dos navios.
+    printf("\nTabuleiro Vazio: \n");
 
-    // Nível Aventureiro - Expansão do Tabuleiro e Posicionamento Diagonal
-    // Sugestão: Expanda o tabuleiro para uma matriz 10x10.
-    // Sugestão: Posicione quatro navios no tabuleiro, incluindo dois na diagonal.
-    // Sugestão: Exiba o tabuleiro completo no console, mostrando 0 para posições vazias e 3 para posições ocupadas.
-
-    // Nível Mestre - Habilidades Especiais com Matrizes
-    // Sugestão: Crie matrizes para representar habilidades especiais como cone, cruz, e octaedro.
-    // Sugestão: Utilize estruturas de repetição aninhadas para preencher as áreas afetadas por essas habilidades no tabuleiro.
-    // Sugestão: Exiba o tabuleiro com as áreas afetadas, utilizando 0 para áreas não afetadas e 1 para áreas atingidas.
-
-    // Exemplos de exibição das habilidades:
-    // Exemplo para habilidade em cone:
-    // 0 0 1 0 0
-    // 0 1 1 1 0
-    // 1 1 1 1 1
+    int tabuleiro[10][10];
     
-    // Exemplo para habilidade em octaedro:
-    // 0 0 1 0 0
-    // 0 1 1 1 0
-    // 0 0 1 0 0
+    int navio1[3] = {3,3,3};
+    int navio2[3] = {3,3,3};
+    
+    int linComecoNav1, colComecoNav1, linComecoNav2, colComecoNav2;
+    char orientacaoNav1, orientacaoNav2;
 
-    // Exemplo para habilidade em cruz:
-    // 0 0 1 0 0
-    // 1 1 1 1 1
-    // 0 0 1 0 0
+    for(int i = 0; i < 10; i++){
+        for(int j = 0; j < 10; j++){
+            tabuleiro[i][j] = 0;
+        }
+    }
+    printf("\n");
 
+    for(int i = 0; i < 10; i++){
+        for(int j = 0; j< 10; j++){
+            printf("%d ",tabuleiro[i][j]);
+        }
+        printf("\n ");
+    }
+    
+    printf("\nInforme em qual linha deseja posicionar o navio 1[1 a 10]: ");
+    scanf("%d",&linComecoNav1);
+    printf("\nInforme em qual coluna deseja posicionar o navio 1[1 a 10]: ");
+    scanf("%d",&colComecoNav1);
+    printf("Informe se o navio 1 estará na horizontal ou na vertical[H, V]: ");
+    scanf(" %c",&orientacaoNav1);
+    printf("\nInforme em qual linha deseja posicionar o navio 2: ");
+    scanf("%d",&linComecoNav2);
+    printf("\nInforme em qual coluna deseja posicionar o navio 2: ");
+    scanf("%d",&colComecoNav2);
+    printf("Informe se o navio 2 estará na horizontal ou na vertical: ");
+    scanf(" %c",&orientacaoNav2);
+    
+    printf("\nPosicionando os navios no tabuleiro...\n");
+    switch(orientacaoNav1){
+        case 'H':{
+            for(int i = 0; i < 3; i++){
+            tabuleiro[linComecoNav1][colComecoNav1 + i] = navio1[i];
+            }
+            break;
+        }
+        case 'V':{
+            for(int i = 0; i < 3; i++){
+            tabuleiro[linComecoNav1 + i][colComecoNav1] = navio1[i];
+            }
+            break;
+        }
+    }
+    switch(orientacaoNav2){
+        case 'H':{
+            for(int i = 0; i < 3; i++){
+            tabuleiro[linComecoNav2][colComecoNav2 + i] = navio2[i];
+            }
+            break;
+        }
+        case 'V':{
+            for(int i = 0; i < 3; i++){
+            tabuleiro[linComecoNav2 + i][colComecoNav2] = navio2[i];
+            }
+            break;
+        }
+    }
+    
+    printf("\n\n");
+    for(int i = 0; i < 10; i++){
+        printf(" %c ", 'A'+i);
+    }
+    printf("\n\n\n");
+    
+    for(int i = 0; i < 10; i++){
+        printf("%2d - ",i+1);
+        
+        for (int j = 0; j < 10; j++){
+            printf("%d ",tabuleiro[i][j]);
+        }
+        printf("\n ");
+    }
+            
     return 0;
 }
